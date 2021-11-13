@@ -1,0 +1,69 @@
+{% extends "beers/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="appbar">
+    <div class="title-appbar">
+        <img src="{% static 'beers/img/logo-rustys.png' %}" class="logo"/>
+        <p class="subtitle main-font">Como o Post-it, mas com o verbo dos deuses</p>
+    </div>
+</div>
+
+<div class="tag-selected">
+    <img src="{% static 'beers/img/tag.png' %}" width="32" >
+    <h2 class="h2 main-font">&nbsp;{{ tag.text }}</h2>
+</div>
+
+<ul class="card-container">
+    {% if beers %}
+        {% for beer in beers %}
+        <form class="card" method="POST">
+            {% csrf_token %}
+            <div class="card-title-container">
+                <h3 class="card-title">{{ beer.title }}</h3>
+                <img src="{% static 'beers/img/pin.png' %}" height="24">
+            </div>
+
+            <div class="card-content">
+                <p class="card-content">{{ beer.content }}</p>
+                <input hidden="True" value="{{ beer.id }}" name="id"/>
+                <input hidden="True" value="{{ beer.title }}" name="titulo"/>
+                <input hidden="True" value="{{ beer.content }}" name="detalhes"/>
+                <input hidden="True" value="{{ beer.tag }}" name="tag"/>
+            </div>
+        
+
+            <div class="btns">
+                <div style="display: flex;flex-direction: row;">
+                    <button class="btn-del" type="submit" name=delete>
+                        <img src="{% static 'beers/img/delete.png' %}" width="24">
+                    </button>
+
+                    
+                    <a class="btn-edit" href="{% url 'beers:beer_view' beer.id %}">
+                        <img width="24" src="{% static 'beers/img/edit.png' %}"/>
+                    </a>
+                </div>
+
+                {% if beer.tag != None %}
+                <div class="card-tag">
+                    <p style="margin: 0;">{{ beer.tag }}</p>
+                </div>
+                {% endif %}
+            </div>
+        </form>
+        {% endfor %}
+    {% else %}
+        <h3 class="main-font">Não há mais nenhuma nota com essa tag.</h3>
+    {% endif %}
+</ul>
+
+<div class="back-home-container">
+    <a class="back-home" href="{% url 'beers:index' %}">
+        <span style="padding-left: 0.3rem;">Ver todas as notas</span>
+    </a>
+</div>
+
+<script type="text/javascript" src="{% static 'beers/script/rustys.js' %}"></script>
+
+{% endblock %}

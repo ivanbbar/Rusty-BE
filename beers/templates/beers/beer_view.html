@@ -1,0 +1,63 @@
+{% extends "beers/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="appbar">
+    <div class="title-appbar">
+        <img src="{% static 'beers/img/logo-rustys.png' %}" class="logo"/>
+        <p class="subtitle main-font">Como o Post-it, mas com o verbo dos deuses</p>
+    </div>
+</div>
+
+<a class="back-beers up-effect" href="{% url 'beers:index' %}">
+    <img width="24" src="{% static 'beers/img/left-arrow.png' %}">
+    <span style="padding-left: 0.3rem;">Voltar</span>
+</a>
+
+<div class="container">
+    {% if beer %}
+    <form class="form-card" method="POST">
+        {% csrf_token %}
+        <input 
+            class="form-card-title" 
+            maxlength="40" 
+            id="titulo" 
+            type="text" 
+            name="titulo"
+            value="{{ beer.title }}" 
+        />
+    
+        <textarea 
+            class="autoresize"
+            maxlength="100" 
+            id="detalhes"
+            name="detalhes">{{ beer.content }}</textarea>
+    
+        {% if beer.tag != None %}
+            <input 
+                maxlength="20" 
+                id="tag" 
+                class="autoresize"
+                placeholder="{{ beer.tag }}"
+                name="tag"
+            />
+        {% else %}
+            <input
+                maxlength="20" 
+                id="tag" 
+                class="autoresize"
+                placeholder="Tag (opcional)"
+                name="tag"
+            />
+        {% endif %}
+
+        {% if msg_error %}
+            <p class="msg-error">{{ msg_error }}</p>
+        {% endif %}
+
+        <input class="btn" type="submit" name="update" value="Atualizar" />
+    </form>
+    {% endif %}
+</div>
+
+{% endblock %}

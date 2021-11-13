@@ -1,0 +1,456 @@
+/*
+Algumas informações úteis e dicas:
+  - Fontes disponíveis:
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Permanent Marker', cursive;
+  - Cores:
+    Tons de amarelo:
+      #e4fc2b
+      #e0d426
+      #f7d736
+      #e0af26
+      #fcb02b
+    Tons de cinza:
+      #2c2c2c
+      #4c4c4c
+    Cores dos cards:
+      #ead3a7
+      #9de0f5
+      #ef89ba
+      #fae890
+      #abe9c1
+  - Sombra: https://codepen.io/sdthornton/pen/wBZdXq
+ */
+
+html,
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #2c2c2c;
+}
+ /* Você pode usar o CSS comentado abaixo, se ajudar */
+ /* Fonte: https://codepen.io/CrisWoler/pen/ogXBLj */
+.btn {
+  font-family: "Roboto", sans-serif;
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-top: 1rem;
+  overflow: hidden;
+  font-size: 1.1rem;
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  background-color: #f7d736;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: #fcd200;
+  transition: 0.3s;
+}
+ 
+.btn > * {
+  position: relative;
+}
+ 
+.btn:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 0;
+  padding-top: 0;
+  border-radius: 100%;
+  background-color: rgba(236, 240, 241, 0.3);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+ 
+.btn:active:before {
+  width: 120%;
+  padding-top: 120%;
+  transition: width 0.2s ease-out, padding-top 0.2s ease-out;
+} 
+
+.appbar {
+  background-color: #f7d736;	
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* align-content: center; */
+  box-shadow: 0 1px 24px rgba(0, 0, 0, 0.75);
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.title-appbar {
+  display: flex;
+  flex-direction: row;
+}
+
+.tag-appbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-width: 12rem;
+  outline: 0;
+  text-decoration: none;
+  color: black;
+}
+
+.up-effect:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+.tag-img {
+  width: 3rem;
+}
+
+/* ***** CABECALHO ***** */
+.logo {
+	width: 6%;
+	margin: 0.5rem;
+}
+
+.subtitle { 
+  font-size: 1.3rem;
+  align-self: center;
+  margin-left: 0.5rem;
+}
+ 
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ***** ADD-BUTTON ***** */
+.form-card {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  width: 35rem;
+  padding: .6rem;
+  
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+}
+ 
+.form-card-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 0.2rem;
+  border-style: none;
+  
+}
+
+.form-card-title:focus, .autoresize:focus {
+  outline: 0;
+  border-radius: 0.3rem;
+  box-shadow: 0 0 6px #9ecaed;
+}
+ 
+.autoresize {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  padding: 0.2rem;
+  margin-top: 1rem;
+  border-style: none;
+  resize: none;
+}
+
+
+
+/* ***** CARDS ***** */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:center;
+  max-width: 98%;
+  margin-top: 2rem;
+}
+  
+.card{
+  font-family: "Permanent Marker", cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  border-radius: 10px;
+  margin:   10px 20px;
+  padding: 10px;
+  width: 13rem;
+  min-height: 6rem;
+
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2);
+  
+}
+
+.main-font {
+  font-family: "Permanent Marker", cursive;
+}
+
+span.main-font {
+  font-weight: bold;
+}
+
+.tag-card-text {
+  display: flex;
+  text-decoration: none;
+  color: #2c2c2c;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.h2 {
+  margin: 0;
+}
+
+.back-beers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.2rem;
+  padding: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #2c2c2c;
+  width: fit-content;
+}
+
+.back-home-container {
+  display: flex; 
+  flex-direction: column;
+  margin-top: 3rem;
+}
+
+.back-home {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.2rem;
+  padding: 1rem;
+  margin-left: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #2c2c2c;
+  width: fit-content;
+  border-radius: 1rem;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2);
+  background-color: #f7d736;
+}
+
+.back-home:hover {
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: #ffd500;
+}
+
+.card-title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-title{
+  font-size: 18px;
+  color:#2c2c2c;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+
+.card-content{
+  /* height: 100%; */
+  font-size: 16px;
+  font-weight: lighter;
+  display: flex;
+  padding: 1px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color:#4c4c4c;
+}
+
+.card-tag {
+  position: relative;
+  border: 1px solid gray;
+  border-radius: 1rem;
+  padding: 0 1rem;
+  
+}
+
+.tag-box {
+  font-family: "Permanent Marker", cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: .8rem;
+  padding: 1rem 2rem;
+  background-color: #f7d736;
+  border-radius: 1rem;
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.tag-box:hover {
+  background-color: #ffd500;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.2s;
+}
+
+.card-tag:hover {
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.tag-selected {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.btn-del {
+  outline: 0;
+  text-decoration: none;
+  border: none;
+  background: none;
+}
+
+.msg-error {
+  font-family: "Permanent Marker", cursive;
+  color: red;
+  text-align: center;
+}
+
+.btn-del:hover, .btn-edit:hover{
+  cursor: pointer;
+  animation: shake 0.35s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 500px;
+}
+
+
+@keyframes shake {
+  0% {
+    transform: translateX(0px) rotate(0deg);
+  }
+  
+  20% {
+    transform: translateX(-4px) rotate(-4deg);
+  }
+  
+  40% {
+    transform: translateX(-2px) rotate(-2deg);
+  }
+  
+  60% {
+    transform: translateX(4px) rotate(4deg);
+  }
+  
+  80% {
+    transform: translateX(2px) rotate(2deg);
+  }
+  
+  100% {
+    transform: translateX(0px) rotate(0deg);
+  }
+}
+
+
+.card-color-1 {
+  background-color: #ead3a7;
+}
+.card-color-2 {
+  background-color: #9de0f5;
+}
+.card-color-3 {
+  background-color: #ef89ba;
+}
+.card-color-4 {
+  background-color: #fae890;
+}
+.card-color-5 {
+  background-color: #abe9c1;
+}
+
+.card-rotation-1{
+  transform: rotate(1deg);
+}
+.card-rotation-2{
+  transform: rotate(-1deg);
+}
+.card-rotation-3{
+  transform: rotate(2deg);
+}
+.card-rotation-4{
+  transform: rotate(-2deg);
+}
+.card-rotation-5{
+  transform: rotate(3deg);
+}
+.card-rotation-6{
+  transform: rotate(-3deg);
+}
+.card-rotation-7{
+  transform: rotate(4deg);
+}
+.card-rotation-8{
+  transform: rotate(-4deg);
+}
+.card-rotation-9{
+  transform: rotate(5deg);
+}
+.card-rotation-10{
+  transform: rotate(-5deg);
+}
+
+/* TAGS */
+
+.tag-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+
+.tag-card{
+  display: flex;
+  text-align: center;
+  background-color: #ef89ba;
+  border: 1px solid black;
+  padding: 2rem;
+}
+
+.no-tag {
+  text-align: center;
+}

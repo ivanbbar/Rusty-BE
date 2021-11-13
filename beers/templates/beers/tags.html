@@ -1,0 +1,39 @@
+{% extends "beers/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="appbar">
+    <div class="title-appbar">
+        <img src="{% static 'beers/img/logo-rustys.png' %}" class="logo"/>
+        <p class="subtitle main-font">Como o Post-it, mas com o verbo dos deuses</p>
+    </div>
+</div>
+
+<a class="back-beers up-effect" href="{% url 'beers:index' %}">
+    <img width="24" src="{% static 'beers/img/left-arrow.png' %}">
+    <span style="padding-left: 0.3rem;">Voltar</span>
+</a>
+
+{% if tags %}
+    <div class="tag-container">
+    {% for tag in tags %}
+        <!-- <div class="tag-box"> -->
+            <a class="tag-box tag-card-text" href="{% url 'beers:beers_by_tag' tag.id %}">
+                <img src="{% static 'beers/img/tag.png' %}" class="tag-img" />
+                <h2 class="h2">{{ tag.text }}</h2>
+                {% for tag_id, tag_counter in counter.items %}
+                    {% if tag.id == tag_id %}
+                        <p>Post-it's: {{ tag_counter }}</p>
+                    {% endif %}
+                {% endfor %}
+            </a>
+        <!-- </div> -->
+    {% endfor %}
+    </div>
+{% else %}
+    <p class="no-tag main-font">Não há nenhuma tag por aqui...</p>
+{% endif %}
+
+    <script type="text/javascript" src="{% static 'beers/script/rustys.js' %}"></script>
+
+{% endblock %}

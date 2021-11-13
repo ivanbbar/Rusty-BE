@@ -1,0 +1,93 @@
+{% extends "beers/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="appbar">
+    <div class="title-appbar">
+        <img src="{% static 'beers/img/logo-rustys.png' %}" class="logo"/>
+        <p class="subtitle main-font">Como o Post-it, mas com cerveja</p>
+    </div>
+    <a href="{% url 'beers:tags' %}" class="tag-appbar up-effect">
+        <span class="main-font">MINHAS TAGS&nbsp;</span>
+        <img src="{% static 'beers/img/tag.png' %}" class="tag-img" />
+    </a>
+</div>
+
+<div class="container">
+    <form class="form-card" method="POST">
+        {% csrf_token %}
+        <input 
+            class="form-card-title" 
+            maxlength="40" 
+            id="titulo" 
+            type="text" 
+            name="titulo"
+            placeholder="Título" 
+        />
+    
+        <textarea 
+            class="autoresize"
+            maxlength="100" 
+            id="detalhes" 
+            placeholder="Digite o conteúdo..."
+            name="detalhes"></textarea>
+    
+        <input 
+            maxlength="20" 
+            id="tag" 
+            class="autoresize"
+            placeholder="Tag (opcional)"
+            name="tag"/>
+
+        {% if msg_error %}
+            <p class="msg-error">{{ msg_error }}</p>
+        {% endif %}
+    
+        <input class="btn" type="submit" name="create" value="Criar" />
+    </form>
+    
+    <ul class="card-container">
+        {% for beer in beers %}
+            <form class="card" method="POST">
+                {% csrf_token %}
+                <div class="card-title-container">
+                    <h3 class="card-title">{{ beer.title }}</h3>
+                    <img src="{% static 'beers/img/pin.png' %}" height="24">
+                </div>
+
+                <div class="card-content">
+                    <p class="card-content">{{ beer.content }}</p>
+                    <input hidden="True" value="{{ beer.id }}" name="id"/>
+                    <input hidden="True" value="{{ beer.title }}" name="titulo"/>
+                    <input hidden="True" value="{{ beer.content }}" name="detalhes"/>
+                    <input hidden="True" value="{{ beer.tag }}" name="tag"/>
+                </div>
+            
+
+                <div class="btns">
+                    <div style="display: flex;flex-direction: row;">
+                        <button class="btn-del" type="submit" name=delete>
+                            <img src="{% static 'beers/img/delete.png' %}" width="24">
+                        </button>
+        
+                        
+                        <a class="btn-edit" href="{% url 'beers:beer_view' beer.id %}">
+                            <img width="24" src="{% static 'beers/img/edit.png' %}"/>
+                        </a>
+                    </div>
+
+                    {% if beer.tag != None %}
+                    <div class="card-tag">
+                        <a href="{% url 'beers:beers_by_tag' beer.tag.id %}">{{ beer.tag }}</a>
+                    </div>
+                    {% endif %}
+                </div>
+                
+            </form>
+        {% endfor %}
+    </ul>
+</div>
+
+<script type="text/javascript" src="{% static 'beers/script/rustys.js' %}"></script>
+
+{% endblock %}
