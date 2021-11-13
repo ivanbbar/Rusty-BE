@@ -1,5 +1,9 @@
 from django.shortcuts import get_object_or_404, render, redirect
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from django.http import Http404
 from .models import Beer, Tag
+from .serializers import BeerSerializer
 
 
 def index(request):
@@ -181,3 +185,19 @@ def beers_by_tag(request, tag_id):
                 'tag': tag_
             }
         )
+
+@api_view(['GET', 'POST'])
+def api_beer(request, beer_id):
+    try:
+        beer = Beer.objects.get(id=beer_id)
+    except Beer.DoesNotExist:
+        raise Http404()
+
+    if request.method == 'POST':
+        new_beer_data = request.data
+        beer.title = new_beer_data['title']
+        beer.content = new_beer_data['content']
+        beer.save()
+    
+    serialized_beer = BeerSerializer(beer)
+    return Response(serialized_beer.data)
